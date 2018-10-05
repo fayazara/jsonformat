@@ -153,7 +153,7 @@
             } else {
                 try {
                     var obj = JSON.parse(inp);
-                    $("#output").html(JSON.stringify(obj, null, 2))
+                    $("#output").html(JSON.stringify(obj, null, 3))
                 } catch (e) {
                     toast("Invalid JSON");
                 }
