@@ -8,106 +8,108 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
     <link href='https://unpkg.com/boxicons@1.7.1/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta name="theme-color" content="#06adfb">
+
 </head>
 
 <body>
     <style type="text/css">
-    #snackbar {
-        visibility: hidden;
-        min-width: 250px;
-        margin-left: -125px;
-        background-color: #333;
-        color: #fff;
-        text-align: center;
-        border-radius: 8px;
-        padding: 16px;
-        position: fixed;
-        z-index: 1;
-        left: 50%;
-        bottom: 30px;
-    }
-
-    #snackbar.show {
-        visibility: visible;
-        -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-        animation: fadein 0.5s, fadeout 0.5s 2.5s;
-    }
-
-    @-webkit-keyframes fadein {
-        from {
-            bottom: 0;
-            opacity: 0;
-        }
-
-        to {
+        #snackbar {
+            visibility: hidden;
+            min-width: 250px;
+            margin-left: -125px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
             bottom: 30px;
-            opacity: 1;
-        }
-    }
-
-    @keyframes fadein {
-        from {
-            bottom: 0;
-            opacity: 0;
         }
 
-        to {
-            bottom: 30px;
-            opacity: 1;
-        }
-    }
-
-    @-webkit-keyframes fadeout {
-        from {
-            bottom: 30px;
-            opacity: 1;
+        #snackbar.show {
+            visibility: visible;
+            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
         }
 
-        to {
-            bottom: 0;
-            opacity: 0;
+        @-webkit-keyframes fadein {
+            from {
+                bottom: 0;
+                opacity: 0;
+            }
+
+            to {
+                bottom: 30px;
+                opacity: 1;
+            }
         }
-    }
 
-    @keyframes fadeout {
-        from {
-            bottom: 30px;
-            opacity: 1;
+        @keyframes fadein {
+            from {
+                bottom: 0;
+                opacity: 0;
+            }
+
+            to {
+                bottom: 30px;
+                opacity: 1;
+            }
         }
 
-        to {
-            bottom: 0;
-            opacity: 0;
+        @-webkit-keyframes fadeout {
+            from {
+                bottom: 30px;
+                opacity: 1;
+            }
+
+            to {
+                bottom: 0;
+                opacity: 0;
+            }
         }
-    }
 
-    nav {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-right: 8px;
-    }
+        @keyframes fadeout {
+            from {
+                bottom: 30px;
+                opacity: 1;
+            }
 
-    .bxl-github {
-        font-size: 32px;
-    }
+            to {
+                bottom: 0;
+                opacity: 0;
+            }
+        }
 
-    .mb8 {
-        margin-bottom: 8px;
-    }
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-right: 8px;
+        }
 
-    .logo {
-        height: 50px;
-        margin: 8px;
-    }
+        .bxl-github {
+            font-size: 32px;
+        }
 
-    .tCenter {
-        text-align: center;
-    }
+        .mb8 {
+            margin-bottom: 8px;
+        }
 
-    .cPointer {
-        cursor: pointer;
-    }
+        .logo {
+            height: 50px;
+            margin: 8px;
+        }
+
+        .tCenter {
+            text-align: center;
+        }
+
+        .cPointer {
+            cursor: pointer;
+        }
     </style>
     <nav>
         <img class="logo" src="json.svg">
@@ -128,7 +130,8 @@
             <div class="card-content">
                 <div class="field">
                     <div class="control">
-                        <textarea class="textarea is-primary" readonly type="text" id="output" placeholder="Formatted JSON" rows="5"></textarea>
+                        <textarea class="textarea is-primary" readonly type="text" id="output" placeholder="Formatted JSON"
+                            rows="5"></textarea>
                     </div>
                 </div>
             </div>
@@ -145,40 +148,40 @@
     </section> -->
     <div id="snackbar">Copied to clipboard</div>
     <script type="text/javascript">
-    $(document).ready(function() {
-        $("#btn").click(function() {
-            var inp = $("#input").val();
-            if (inp == "") {
-                toast("JSON Kaha hai?");
-            } else {
-                try {
-                    var obj = JSON.parse(inp);
-                    $("#output").html(JSON.stringify(obj, null, 3))
-                } catch (e) {
-                    toast("Invalid JSON");
+        $(document).ready(function () {
+            $("#btn").click(function () {
+                var inp = $("#input").val();
+                if (inp == "") {
+                    toast("JSON Kaha hai?");
+                } else {
+                    try {
+                        var obj = JSON.parse(inp);
+                        $("#output").html(JSON.stringify(obj, null, 3))
+                    } catch (e) {
+                        toast("Invalid JSON");
+                    }
                 }
-            }
+            });
         });
-    });
 
-    $("#copy").click(function() {
-        var copyText = $("#output");
-        if ($("#output").val() == "") {
-            toast("Nothing to copy");
-        } else {
-            copyText.select();
-            document.execCommand("copy");
-            toast("Copied to clipboard");
+        $("#copy").click(function () {
+            var copyText = $("#output");
+            if ($("#output").val() == "") {
+                toast("Nothing to copy");
+            } else {
+                copyText.select();
+                document.execCommand("copy");
+                toast("Copied to clipboard");
+            }
+
+        });
+
+        function toast(msg) {
+            var snack = $("#snackbar");
+            snack.text(msg);
+            snack.addClass("show");
+            setTimeout(function () { snack.removeClass("show"); }, 3000);
         }
-
-    });
-
-    function toast(msg) {
-        var snack = $("#snackbar");
-        snack.text(msg);
-        snack.addClass("show");
-        setTimeout(function() { snack.removeClass("show"); }, 3000);
-    }
     </script>
 </body>
 
